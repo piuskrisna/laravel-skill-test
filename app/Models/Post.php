@@ -11,6 +11,13 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'title',
+        'is_draft',
+        'published_at',
+    ];
+
     protected $casts = [
         'published_at' => 'datetime',
         'is_draft' => 'boolean',

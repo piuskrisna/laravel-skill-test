@@ -74,11 +74,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        $post->update([
-            'title' => $request->title,
-            'is_draft' => $request->is_draft ?? false,
-            'published_at' => $request->published_at ?? now(),
-        ]);
+        $post->update($request->validated());
 
         return new PostResource($post);
     }

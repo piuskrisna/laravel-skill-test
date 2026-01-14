@@ -23,6 +23,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
+            'is_draft' => 'sometimes|boolean',
+            'published_at' => 'sometimes|nullable|date',
         ];
     }
 }
