@@ -50,7 +50,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->is_draft || $post->published_at == null) {
+        if ($post->is_draft || $post->published_at > now()) {
             abort(404, 'Post not found');
         }
 
@@ -76,6 +76,8 @@ class PostController extends Controller
 
         $post->update([
             'title' => $request->title,
+            'is_draft' => $request->is_draft ?? false,
+            'published_at' => $request->published_at ?? now(),
         ]);
 
         return new PostResource($post);
